@@ -1,8 +1,8 @@
 mod d1;
+mod d2;
 mod utils;
 
 use clap::Parser;
-use d1::d1;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -19,7 +19,8 @@ fn main() {
     let args = Args::parse();
 
     match args.day {
-        1 => d1(args.part),
+        1 => d1::d1(args.part),
+        2 => d2::d2(args.part),
         _ => println!("Invalid day specified"),
     }
 }

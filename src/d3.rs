@@ -27,7 +27,27 @@ fn p1() {
 }
 
 fn p2 () {
-
+    if let Ok(mut lines) = read_lines("inputs/3.txt") {
+        let mut score: u32 = 0;
+        // for each line in file
+        while let (Some(line1), Some(line2), Some(line3)) = (lines.next(), lines.next(), lines.next()) {
+            if let (Ok(line1), Ok(line2), Ok(line3)) = (line1, line2, line3) {
+                for i in line1.chars() {
+                    if line2.contains(i) && line3.contains(i) {
+                        if i.is_uppercase() {
+                            score += (i as u32) - ('A' as u32) + 27
+                        } else {
+                            score += (i as u32) - ('a' as u32) + 1
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+            
+        // return the total score
+        println!("Score is {}", score);
+    }
 }
 
 pub fn d3(part: i32) {

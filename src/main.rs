@@ -1,5 +1,6 @@
 mod d1;
 mod d2;
+mod d3;
 mod utils;
 
 use clap::Parser;
@@ -21,6 +22,7 @@ fn main() {
     match args.day {
         1 => d1::d1(args.part),
         2 => d2::d2(args.part),
+        3 => d3::d3(args.part),
         _ => println!("Invalid day specified"),
     }
 }

@@ -30,7 +30,7 @@ fn main() {
         4 => d4::d4(args.part),
         5 => d5::d5(args.part),
         6 => d6::d6(args.part),
-        6 => d7::d7(args.part),
+        7 => d7::d7(args.part),
         _ => println!("Invalid day specified"),
     }
 }

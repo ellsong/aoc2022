@@ -8,6 +8,7 @@ mod d7;
 mod d8;
 mod d9;
 mod d9b;
+mod d10;
 mod utils;
 
 use clap::Parser;
@@ -36,6 +37,7 @@ fn main() {
         7 => d7::d7(args.part),
         8 => d8::d8(args.part),
         9 => d9::d9(args.part),
+        10 => d10::d10(args.part),
         _ => println!("Invalid day specified"),
     }
 }

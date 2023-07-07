@@ -10,6 +10,7 @@ mod d9;
 mod d9b;
 mod d10;
 mod d11;
+mod d11b;
 mod utils;
 
 use clap::Parser;

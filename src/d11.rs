@@ -1,3 +1,5 @@
+use crate::d11b;
+
 enum Op {
     Mult(u32),
     Plus(u32),
@@ -91,7 +93,7 @@ impl Party {
 
 fn p1() {
     let mut party = Party::start();
-    for rounds in 0..20 {
+    for _rounds in 0..10_000 {
         for i in 0..party.monkeys.len() {
             while !party.monkeys[i].items.is_empty() {
                 let mut worry = party.monkeys[i].items.remove(0);
@@ -100,7 +102,7 @@ fn p1() {
                     Op::Plus(v) => worry += v,
                     Op::Square => worry *= worry,
                 }
-                worry /= 3;
+                // worry /= 3;
                 if worry%party.monkeys[i].test==0 {
                     party.monkeys[party.monkeys[i].pass].items.push(worry);
                 } else {
@@ -119,7 +121,7 @@ fn p1() {
 pub fn d11(part: i32) {
     match part {
         1 => p1(),
-        // 2 => p2(),
+        2 => d11b::p2(),
         _ => println!("Invalid part"),
     }
 }

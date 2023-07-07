@@ -1,13 +1,13 @@
 enum Op {
-    Mult(u64),
-    Plus(u64),
+    Mult(u32),
+    Plus(u32),
     Square,
 }
 
 struct Monkey {
-    items: Vec<u64>,
+    items: Vec<u32>,
     op: Op,
-    test: u64,
+    test: u32,
     pass: usize,
     fail: usize,
 }
@@ -77,35 +77,30 @@ impl Monkey {
 
 struct Party {
     monkeys: [Monkey;8],
-    inspections: [u64;8],
-    divisor_product: u64,
+    inspections: [u32;8],
 }
 
 impl Party {
     fn start() -> Self {
-        let mb = Monkey::business();
-        let divisor_product = mb.iter().map(|m| m.test).product();
         Party {
-            monkeys: mb,
-            inspections: [0;8],
-            divisor_product
+            monkeys: Monkey::business(),
+            inspections: [0;8]
         }
     }
 }
 
-pub fn p2() {
+pub fn p1() {
     let mut party = Party::start();
-    for _rounds in 0..10000 {
+    for _rounds in 0..20 {
         for i in 0..party.monkeys.len() {
             while !party.monkeys[i].items.is_empty() {
                 let mut worry = party.monkeys[i].items.remove(0);
-                worry %= party.divisor_product;
                 match party.monkeys[i].op {
                     Op::Mult(v) => worry *= v,
                     Op::Plus(v) => worry += v,
                     Op::Square => worry *= worry,
                 }
-                // worry /= 3;
+                worry /= 3;
                 if worry%party.monkeys[i].test==0 {
                     party.monkeys[party.monkeys[i].pass].items.push(worry);
                 } else {
